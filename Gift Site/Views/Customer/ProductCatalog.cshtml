@@ -1,0 +1,32 @@
+﻿@model IEnumerable<Gift_Site.Models.Product>
+
+<h2>Product Catalog</h2>
+<table>
+    <thead>
+        <tr>
+            <th>Product Name</th>
+            <th>Description</th>
+            <th>Rate</th>
+            <th>Quantity</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.ProductName</td>
+                <td>@product.Description</td>
+                <td>@product.Rate</td>
+                <td>@product.Quantity</td>
+                <td>
+                    <form asp-action="AddToCart" method="post">
+                        <input type="hidden" name="productId" value="@product.ProductId" />
+                        <input type="number" name="quantity" min="1" max="@product.Quantity" />
+                        <button type="submit">Add to Cart</button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

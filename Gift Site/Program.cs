@@ -12,7 +12,11 @@ builder.Services.AddControllersWithViews();
 //        .AddDefaultTokenProviders();
 
 builder.Services.AddDistributedMemoryCache();
-builder.Services.AddSession();
+builder.Services.AddSession(options =>
+{
+    options.Cookie.HttpOnly = true;  // Helps prevent client-side script access to the cookie.
+    options.Cookie.IsEssential = true;  // The session cookie is essential for the app.
+});
 builder.Services.AddControllersWithViews();
 
 
@@ -37,6 +41,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Cart}/{action=Index}/{id?}");
+    pattern: "{controller=Customer}/{action=Login}/{id?}");
 
 app.Run();

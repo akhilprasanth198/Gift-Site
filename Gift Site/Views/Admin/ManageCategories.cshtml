@@ -1,0 +1,23 @@
+﻿@model IEnumerable<Gift_Site.Models.Category>
+
+<h2>Manage Categories</h2>
+<a asp-action="AddCategory">Add New Category</a>
+<table>
+    <thead>
+        <tr>
+            <th>Category Name</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var category in Model)
+        {
+            <tr>
+                <td>@category.CategoryName</td>
+                <td>
+                    <a asp-action="DeleteCategory" asp-route-id="@category.CategoryId">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

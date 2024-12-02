@@ -8,19 +8,6 @@
             "sslPort": 44397
         }
     },
-    {
-        "profiles": {
-            "Gift_Site": {
-                "commandName": "Project",
-                "dotnetRunMessages": true,
-                "launchBrowser": true,
-                "applicationUrl": "http://localhost:5000;https://localhost:7041",
-                "environmentVariables": {
-                    "ASPNETCORE_ENVIRONMENT": "Development"
-                }
-            }
-        }
-    },
 
   "profiles": {
     "http": {
