@@ -1,0 +1,32 @@
+﻿@model Gift_Site.Models.Order
+
+<h1>Order Confirmation</h1>
+
+<p>Thank you for your order!</p>
+<p><strong>Order ID:</strong> @Model.OrderId</p>
+<p><strong>Shipping Address:</strong> @Model.ShippingAddress</p>
+<p><strong>Total Amount:</strong> @Model.TotalAmount</p>
+<p><strong>Order Date:</strong> @Model.OrderDate</p>
+
+<h3>Order Details</h3>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Product ID</th>
+            <th>Quantity</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var detail in Model.OrderDetails)
+        {
+            <tr>
+                <td>@detail.ProductId</td>
+                <td>@detail.Quantity</td>
+                <td>@detail.Price</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<a asp-controller="Product" asp-action="Index" class="btn btn-primary">Continue Shopping</a>
