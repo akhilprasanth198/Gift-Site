@@ -1,13 +1,13 @@
 ﻿<h2>Admin Login</h2>
-<form asp-action="Login" method="post">
+<form asp-action="Login" method="post" autocomplete="on">
     <div>
-        <label>Email</label>
-        <input type="email" name="email" />
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" autocomplete="email" class="form-control" />
     </div>
     <div>
-        <label>Password</label>
-        <input type="password" name="password" />
+        <label for="password">Password</label>
+        <input type="password" name="password" id="password" autocomplete="current-password" class="form-control" />
     </div>
-    <button type="submit">Login</button>
+    <button type="submit" class="btn btn-primary">Login</button>
 </form>
 <p>@ViewBag.Error</p>

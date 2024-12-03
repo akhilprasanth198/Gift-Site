@@ -1,0 +1,27 @@
+﻿@{
+    ViewData["Title"] = "Admin Dashboard";
+}
+
+<h2>Admin Dashboard</h2>
+
+<div class="dashboard">
+    <div class="dashboard-item">
+        <h4><a href="@Url.Action("AddCategory", "Admin")">Add Category</a></h4>
+        <p>Create new product categories for your store.</p>
+    </div>
+
+    <div class="dashboard-item">
+        <h4><a href="@Url.Action("AddProduct", "Admin")">Add Product</a></h4>
+        <p>Add new products to the store inventory.</p>
+    </div>
+
+    <div class="dashboard-item">
+        <h4><a href="@Url.Action("ManageCategories", "Admin")">Manage Categories</a></h4>
+        <p>View, edit, or delete product categories.</p>
+    </div>
+
+    <div class="dashboard-item">
+        <h4><a href="@Url.Action("ManageProducts", "Admin")">Manage Products</a></h4>
+        <p>View, edit, or delete products in the store inventory.</p>
+    </div>
+</div>

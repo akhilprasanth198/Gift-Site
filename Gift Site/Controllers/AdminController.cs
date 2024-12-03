@@ -52,14 +52,14 @@ namespace Gift_Site.Controllers
             {
                 HttpContext.Session.SetString("AdminId", admin.Id.ToString());
                 HttpContext.Session.SetString("AdminName", admin.UserName);
-                return RedirectToAction("Dashboard");
+                return RedirectToAction("AdminDashboard");
             }
             ViewBag.Error = "Invalid admin login.";
             return View();
         }
 
         // GET: Admin/Dashboard
-        public IActionResult Dashboard()
+        public IActionResult AdminDashboard()
         {
             return View();
         }

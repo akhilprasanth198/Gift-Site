@@ -8,6 +8,7 @@
         public int Quantity { get; set; }
         public decimal Rate { get; set; }
         public int CategoryId { get; set; }
+
     }
 
 
