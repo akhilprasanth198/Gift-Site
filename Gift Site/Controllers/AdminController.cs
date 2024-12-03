@@ -21,18 +21,26 @@ namespace Gift_Site.Controllers
         }
 
         [HttpPost]
-        public IActionResult Register(User user)
+        public IActionResult Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
-                // You can assign the role as "Admin" manually here
-                user.Role = "Admin"; // Ensure this is assigned manually, or by logic
+                var user = new User
+                {
+                    UserName = model.UserName,
+                    Email = model.Email,
+                    MobileNo = model.MobileNo,
+                    Password = model.Password, // Consider hashing
+                    Role = "Admin" // Explicit Admin role
+                };
+
                 _context.Users.Add(user);
                 _context.SaveChanges();
                 return RedirectToAction("Login");
             }
-            return View(user);
+            return View(model);
         }
+
 
 
 
@@ -44,7 +52,6 @@ namespace Gift_Site.Controllers
 
         // POST: Admin/Login
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public IActionResult Login(string email, string password)
         {
             var admin = _context.Users.FirstOrDefault(u => u.Email == email && u.Password == password && u.Role == "Admin");
