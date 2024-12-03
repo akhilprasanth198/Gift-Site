@@ -19,20 +19,33 @@ namespace Gift_Site.Controllers
         [HttpGet]
         public IActionResult Register()
         {
-            return View();
+            return View(new RegisterViewModel());
         }
 
+
         [HttpPost]
-        public IActionResult Register(User user)
+        public IActionResult Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
             {
+                var user = new User
+                {
+                    UserName = model.UserName,
+                    Email = model.Email,
+                    MobileNo = model.MobileNo,
+                    Password = model.Password,  // Consider using password hashing
+                    Role = "Customer"  // Default role for customers
+                };
+
                 _context.Users.Add(user);
                 _context.SaveChanges();
                 return RedirectToAction("Login");
             }
-            return View(user);
+            return View(model);  // Return the same view with validation errors if any
         }
+
+
+
 
         // Login action
         [HttpGet]
@@ -44,11 +57,11 @@ namespace Gift_Site.Controllers
         [HttpPost]
         public IActionResult Login(string email, string password)
         {
-            
-         var user = _context.Users.FirstOrDefault(u => u.Email == email && u.Password == password);
+            var user = _context.Users.FirstOrDefault(u => u.Email == email && u.Password == password && u.Role == "Customer");
             if (user != null)
             {
-                // Logic for setting session or claims
+                HttpContext.Session.SetString("UserId", user.Id.ToString());
+                HttpContext.Session.SetString("UserName", user.UserName);
                 return RedirectToAction("ProductCatalog");
             }
             ViewBag.Error = "Invalid email or password.";
